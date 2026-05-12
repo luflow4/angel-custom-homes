@@ -95,8 +95,9 @@ function Hero() {
   const imageX = useTransform(scrollYProgress, [0, 0.2], [0, -260]);
   const imageY = useTransform(scrollYProgress, [0, 0.2], [0, 140]);
 
-  const titleScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.72]);
-  const titleY = useTransform(scrollYProgress, [0, 0.2], [0, -80]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.46]);
+  const titleY = useTransform(scrollYProgress, [0, 0.2], [0, -115]);
+  const titleX = useTransform(scrollYProgress, [0, 0.2], [0, 55]);
 
   const panelOpacity = useTransform(scrollYProgress, [0.11, 0.2], [0, 1]);
   const panelX = useTransform(scrollYProgress, [0.11, 0.2], [120, 0]);
@@ -104,16 +105,6 @@ function Hero() {
   return (
     <section id="top" className="relative h-[210vh] bg-black text-white">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-6">
-        <div className="absolute left-1/2 top-8 z-40 -translate-x-1/2">
-          <div className="flex h-24 w-24 items-center justify-center rounded-full border border-[#c9a45c]/40 bg-black/45 backdrop-blur">
-            <img
-              src="/logo/ach-gold-mark.png"
-              alt="Angel Custom Homes logo"
-              className="h-12 w-auto"
-            />
-          </div>
-        </div>
-
         <motion.div
           style={{ scale: imageScale, x: imageX, y: imageY }}
           className="absolute inset-0 z-10 origin-center"
@@ -123,19 +114,19 @@ function Hero() {
             alt="Angel Custom Homes luxury residence"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-black/55" />
         </motion.div>
 
         <motion.div
-          style={{ scale: titleScale, y: titleY }}
-          className="pointer-events-none relative z-30 flex flex-col items-center text-center"
+          style={{ scale: titleScale, y: titleY, x: titleX }}
+          className="pointer-events-none relative z-30 w-full max-w-[92vw] text-center"
         >
-          <h1 className="font-serif text-[13vw] font-light leading-[0.82] tracking-[-0.075em] text-white md:text-[6vw]">
-            Angel
-          </h1>
-          <h1 className="font-serif text-[11vw] font-light leading-[0.82] tracking-[-0.075em] text-white md:text-[5vw]">
+          <div className="font-serif text-[18vw] font-light leading-[0.75] tracking-[0.28em] text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)] md:text-[10.5vw]">
+            ANGEL
+          </div>
+          <div className="mt-8 text-[4.8vw] font-light uppercase leading-none tracking-[0.55em] text-[#c9a45c] drop-shadow-[0_5px_18px_rgba(0,0,0,0.75)] md:mt-10 md:text-[3.15vw]">
             Custom Homes
-          </h1>
+          </div>
         </motion.div>
 
         <motion.div
@@ -271,33 +262,33 @@ function BuildProcess() {
           </div>
         </div>
 
-        <div className="relative mx-auto h-[64vh] w-full max-w-5xl overflow-hidden border border-white/10 bg-[#f7f3ea] shadow-2xl">
+        <div className="relative mx-auto h-[64vh] w-full max-w-5xl overflow-hidden border border-white/10 bg-transparent shadow-2xl">
           <motion.img
             style={{ opacity: foundationOpacity }}
             src="/build/foundation-home.png"
             alt="Architectural foundation plan"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain"
           />
 
           <motion.img
             style={{ opacity: frameOpacity }}
             src="/build/frame-home.png"
             alt="Luxury home framing"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain"
           />
 
           <motion.img
             style={{ opacity: shellOpacity }}
-            src="/build/shell-home.webp"
+            src="/build/shell-home.png"
             alt="Exterior shell construction"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain"
           />
 
           <motion.img
             style={{ opacity: exteriorOpacity }}
-            src="/build/exterior-home.webp"
+            src="/build/exterior-home.png"
             alt="Finished exterior structure"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain"
           />
 
           <motion.div
@@ -309,14 +300,13 @@ function BuildProcess() {
             className="absolute inset-0"
           >
             <img
-              src="/build/final-home.webp"
+              src="/build/final-home.png"
               alt="Completed Angel Custom Homes residence"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </motion.div>
 
-          <div className="absolute left-6 top-6 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-black/70 backdrop-blur">
+          <div className="absolute left-6 top-6 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-white/70 backdrop-blur">
             Scroll build sequence
           </div>
         </div>
