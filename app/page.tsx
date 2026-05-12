@@ -57,11 +57,7 @@ function Header() {
           ))}
         </nav>
 
-        <button
-          className="md:hidden"
-          onClick={() => setOpen(true)}
-          aria-label="Open menu"
-        >
+        <button className="md:hidden" onClick={() => setOpen(true)} aria-label="Open menu">
           <Menu />
         </button>
       </div>
@@ -99,6 +95,9 @@ function Hero() {
   const titleY = useTransform(scrollYProgress, [0, 0.2], [0, -115]);
   const titleX = useTransform(scrollYProgress, [0, 0.2], [0, 55]);
 
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.08, 0.2], [1, 0.85, 1]);
+  const logoScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.82]);
+
   const panelOpacity = useTransform(scrollYProgress, [0.11, 0.2], [0, 1]);
   const panelX = useTransform(scrollYProgress, [0.11, 0.2], [120, 0]);
 
@@ -115,6 +114,19 @@ function Hero() {
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-black/55" />
+        </motion.div>
+
+        <motion.div
+          style={{ opacity: logoOpacity, scale: logoScale }}
+          className="absolute left-1/2 top-8 z-40 -translate-x-1/2"
+        >
+          <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#c9a45c]/35 bg-black/35 backdrop-blur">
+            <img
+              src="/logo/ach-gold-mark.png"
+              alt="Angel Custom Homes logo"
+              className="h-10 w-auto"
+            />
+          </div>
         </motion.div>
 
         <motion.div
@@ -138,11 +150,9 @@ function Hero() {
           </p>
 
           <p className="text-base leading-8">
-            Angel Custom Homes designs and builds luxury residences throughout
-            the Dallas-Fort Worth metroplex. Our work blends timeless
-            architecture, elevated craftsmanship, and highly personalized
-            execution to create homes that feel both enduring and deeply
-            individual.
+            Angel Custom Homes designs and builds luxury residences throughout the Dallas-Fort Worth metroplex.
+            Our work blends timeless architecture, elevated craftsmanship, and highly personalized execution
+            to create homes that feel both enduring and deeply individual.
           </p>
         </motion.div>
 
@@ -169,10 +179,9 @@ function Portfolio() {
           </div>
 
           <p className="max-w-2xl self-end text-sm leading-8 text-black/65">
-            A portfolio of estate-inspired homes for clients across Southlake,
-            Highland Park, Preston Hollow, Westlake, and the greater DFW metro.
-            Each residence is shaped around the client’s lifestyle,
-            architectural vision, and long-term legacy.
+            A portfolio of estate-inspired homes for clients across Southlake, Highland Park,
+            Preston Hollow, Westlake, and the greater DFW metro. Each residence is shaped around
+            the client’s lifestyle, architectural vision, and long-term legacy.
           </p>
         </div>
 
@@ -207,9 +216,8 @@ function Portfolio() {
                   {project.location}
                 </p>
                 <p className="max-w-md text-sm leading-8 text-black/65">
-                  Each residence is designed and built around the client’s
-                  lifestyle, architectural vision, and long-term legacy. From
-                  structural execution to handcrafted finishes, every detail is
+                  Each residence is designed and built around the client’s lifestyle, architectural vision,
+                  and long-term legacy. From structural execution to handcrafted finishes, every detail is
                   managed with precision from concept through completion.
                 </p>
               </div>
@@ -226,13 +234,12 @@ function BuildProcess() {
 
   const foundationOpacity = useTransform(scrollYProgress, [0.46, 0.54], [1, 0.55]);
   const frameOpacity = useTransform(scrollYProgress, [0.52, 0.62], [0, 1]);
-  const shellOpacity = useTransform(scrollYProgress, [0.60, 0.70], [0, 1]);
-  const exteriorOpacity = useTransform(scrollYProgress, [0.68, 0.78], [0, 1]);
-  const photoOpacity = useTransform(scrollYProgress, [0.76, 0.86], [0, 1]);
-  const photoScale = useTransform(scrollYProgress, [0.76, 0.86], [0.96, 1]);
+  const exteriorOpacity = useTransform(scrollYProgress, [0.64, 0.74], [0, 1]);
+  const finalOpacity = useTransform(scrollYProgress, [0.74, 0.86], [0, 1]);
+  const finalScale = useTransform(scrollYProgress, [0.74, 0.86], [0.96, 1]);
   const revealClip = useTransform(
     scrollYProgress,
-    [0.76, 0.86],
+    [0.74, 0.86],
     ['inset(0 100% 0 0)', 'inset(0 0% 0 0)']
   );
 
@@ -247,18 +254,16 @@ function BuildProcess() {
             From plans to presence.
           </h2>
           <p className="text-sm leading-8 text-white/62">
-            Every custom residence begins with architectural intent and evolves
-            through engineering, foundation, framing, exterior detailing, and
-            final refinement — transforming vision into a fully realized luxury
-            home.
+            Every custom residence begins with architectural intent and evolves through engineering,
+            foundation, framing, exterior detailing, and final refinement — transforming vision into
+            a fully realized luxury home.
           </p>
 
           <div className="mt-10 grid grid-cols-2 gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
             <span>01 Foundation</span>
             <span>02 Framing</span>
-            <span>03 Shell</span>
-            <span>04 Exterior</span>
-            <span>05 Finish</span>
+            <span>03 Exterior</span>
+            <span>04 Finish</span>
           </div>
         </div>
 
@@ -278,13 +283,6 @@ function BuildProcess() {
           />
 
           <motion.img
-            style={{ opacity: shellOpacity }}
-            src="/build/shell-home.png"
-            alt="Exterior shell construction"
-            className="absolute inset-0 h-full w-full object-contain"
-          />
-
-          <motion.img
             style={{ opacity: exteriorOpacity }}
             src="/build/exterior-home.png"
             alt="Finished exterior structure"
@@ -293,8 +291,8 @@ function BuildProcess() {
 
           <motion.div
             style={{
-              opacity: photoOpacity,
-              scale: photoScale,
+              opacity: finalOpacity,
+              scale: finalScale,
               clipPath: revealClip,
             }}
             className="absolute inset-0"
@@ -338,26 +336,11 @@ function CTA() {
         </div>
 
         <form className="grid gap-4 bg-black p-7 text-white md:grid-cols-2">
-          <input
-            className="border border-white/20 bg-transparent px-4 py-4 outline-none"
-            placeholder="First name"
-          />
-          <input
-            className="border border-white/20 bg-transparent px-4 py-4 outline-none"
-            placeholder="Last name"
-          />
-          <input
-            className="border border-white/20 bg-transparent px-4 py-4 outline-none md:col-span-2"
-            placeholder="Email"
-          />
-          <input
-            className="border border-white/20 bg-transparent px-4 py-4 outline-none md:col-span-2"
-            placeholder="Phone"
-          />
-          <textarea
-            className="min-h-36 border border-white/20 bg-transparent px-4 py-4 outline-none md:col-span-2"
-            placeholder="Tell us about your lot, timeline, budget, and vision"
-          />
+          <input className="border border-white/20 bg-transparent px-4 py-4 outline-none" placeholder="First name" />
+          <input className="border border-white/20 bg-transparent px-4 py-4 outline-none" placeholder="Last name" />
+          <input className="border border-white/20 bg-transparent px-4 py-4 outline-none md:col-span-2" placeholder="Email" />
+          <input className="border border-white/20 bg-transparent px-4 py-4 outline-none md:col-span-2" placeholder="Phone" />
+          <textarea className="min-h-36 border border-white/20 bg-transparent px-4 py-4 outline-none md:col-span-2" placeholder="Tell us about your lot, timeline, budget, and vision" />
           <button className="inline-flex w-fit items-center gap-3 bg-[#c9a45c] px-6 py-4 text-xs uppercase tracking-[0.25em] text-black md:col-span-2">
             Send inquiry <ArrowRight size={16} />
           </button>
