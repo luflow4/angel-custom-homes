@@ -88,8 +88,8 @@ function Hero() {
           <div className="absolute inset-0 bg-black/35" />
         </motion.div>
         <motion.div style={{ scale: titleScale, y: titleY }} className="pointer-events-none relative z-30 flex flex-col items-center text-center">
-          <h1 className="font-serif text-[13vw] font-light leading-[0.82] tracking-[-0.075em] text-white md:text-[10vw]">Angel</h1>
-          <h1 className="font-serif text-[11vw] font-light leading-[0.82] tracking-[-0.075em] text-white md:text-[8.2vw]">Custom Homes</h1>
+          <h1 className="font-serif text-[13vw] font-light leading-[0.82] tracking-[-0.075em] text-white md:text-[6vw]">Angel</h1>
+          <h1 className="font-serif text-[11vw] font-light leading-[0.82] tracking-[-0.075em] text-white md:text-[5vw]">Custom Homes</h1>
         </motion.div>
         <motion.div style={{ opacity: panelOpacity, x: panelX }} className="absolute bottom-[7%] right-[10%] z-20 hidden w-[44vw] max-w-[660px] bg-[#f7f3ea] p-12 text-black md:block">
           <p className="mb-6 text-xs uppercase tracking-[0.32em] text-[#c9a45c]">DFW Luxury Custom Builder</p>
