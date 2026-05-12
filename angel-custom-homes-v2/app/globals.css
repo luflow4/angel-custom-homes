@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --black: #080808; --gold: #c9a45c; --white: #f7f3ea; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--black); color: var(--white); }
+* { box-sizing: border-box; }
+::selection { background: var(--gold); color: #080808; }
