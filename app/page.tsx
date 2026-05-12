@@ -33,11 +33,14 @@ const projects = [
 
 function Header() {
   const [open, setOpen] = useState(false);
-  const links = useMemo(() => [
-    ['Portfolio', '#portfolio'],
-    ['Process', '#process'],
-    ['Contact', '#contact'],
-  ], []);
+  const links = useMemo(
+    () => [
+      ['Portfolio', '#portfolio'],
+      ['Process', '#process'],
+      ['Contact', '#contact'],
+    ],
+    []
+  );
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-6 py-6 text-white mix-blend-difference">
@@ -84,12 +87,10 @@ function Hero() {
           <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2600&q=90" alt="Luxury custom home" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-black/35" />
         </motion.div>
-        <motion.h1 style={{ scale: titleScale, y: titleY }} className="pointer-events-none relative z-30 whitespace-nowrap font-serif text-[16vw] font-light leading-none tracking-[-0.08em] text-white">
-          Angel Custom Homes
-        </motion.h1>
-        <motion.p style={{ opacity: panelOpacity }} className="absolute bottom-[18%] right-[9%] z-40 max-w-xl font-serif text-4xl italic leading-tight text-white md:text-5xl">
-          Luxury custom homes shaped around the way you live.
-        </motion.p>
+        <motion.div style={{ scale: titleScale, y: titleY }} className="pointer-events-none relative z-30 flex flex-col items-center text-center">
+          <h1 className="font-serif text-[13vw] font-light leading-[0.82] tracking-[-0.075em] text-white md:text-[10vw]">Angel</h1>
+          <h1 className="font-serif text-[11vw] font-light leading-[0.82] tracking-[-0.075em] text-white md:text-[8.2vw]">Custom Homes</h1>
+        </motion.div>
         <motion.div style={{ opacity: panelOpacity, x: panelX }} className="absolute bottom-[7%] right-[10%] z-20 hidden w-[44vw] max-w-[660px] bg-[#f7f3ea] p-12 text-black md:block">
           <p className="mb-6 text-xs uppercase tracking-[0.32em] text-[#c9a45c]">DFW Luxury Custom Builder</p>
           <p className="text-base leading-8">Angel Custom Homes creates refined custom residences across the Dallas-Fort Worth metro. Our core work is luxury new construction: thoughtful architecture, disciplined project management, elevated finishes, and homes designed around the way each family lives.</p>
@@ -133,43 +134,34 @@ function Portfolio() {
 
 function BuildProcess() {
   const { scrollYProgress } = useScroll();
-  const blueprint = useTransform(scrollYProgress, [0.48, 0.58], [1, 0.25]);
-  const frame = useTransform(scrollYProgress, [0.55, 0.65], [0, 1]);
-  const house = useTransform(scrollYProgress, [0.64, 0.76], [0, 1]);
-  const houseScale = useTransform(scrollYProgress, [0.64, 0.76], [0.92, 1]);
+  const planOpacity = useTransform(scrollYProgress, [0.47, 0.58], [1, 0.35]);
+  const frameOpacity = useTransform(scrollYProgress, [0.54, 0.64], [0, 1]);
+  const shellOpacity = useTransform(scrollYProgress, [0.61, 0.7], [0, 1]);
+  const photoOpacity = useTransform(scrollYProgress, [0.7, 0.8], [0, 1]);
+  const photoScale = useTransform(scrollYProgress, [0.7, 0.8], [0.96, 1]);
+  const revealClip = useTransform(scrollYProgress, [0.7, 0.8], ['inset(0 100% 0 0)', 'inset(0 0% 0 0)']);
 
   return (
-    <section id="process" className="relative h-[240vh] bg-black text-white">
-      <div className="sticky top-0 grid h-screen items-center overflow-hidden px-6 md:grid-cols-[0.82fr_1.18fr]">
+    <section id="process" className="relative h-[260vh] bg-black text-white">
+      <div className="sticky top-0 grid h-screen items-center overflow-hidden px-6 md:grid-cols-[0.8fr_1.2fr]">
         <div className="z-20 mx-auto max-w-md">
           <p className="mb-4 text-xs uppercase tracking-[0.35em] text-[#c9a45c]">Build Process</p>
-          <h2 className="mb-6 font-serif text-6xl font-light leading-none md:text-8xl">From vision to residence.</h2>
-          <p className="text-sm leading-8 text-white/62">The custom home comes to life as you scroll: plan, structure, exterior character, and finished residence. This section will later use actual Angel project drawings and renders.</p>
+          <h2 className="mb-6 font-serif text-6xl font-light leading-none md:text-8xl">From plans to presence.</h2>
+          <p className="text-sm leading-8 text-white/62">The home is revealed in layers as you scroll: architectural linework, structure, exterior massing, and finally the finished residence in full color.</p>
+          <div className="mt-10 grid grid-cols-2 gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
+            <span>01 Plan</span><span>02 Frame</span><span>03 Shell</span><span>04 Finish</span>
+          </div>
         </div>
-        <div className="relative mx-auto h-[62vh] w-full max-w-4xl">
-          <motion.div style={{ opacity: blueprint }} className="absolute inset-0 border border-[#c9a45c]/35 bg-white/[0.03]">
-            <svg viewBox="0 0 900 520" className="h-full w-full">
-              <rect x="110" y="100" width="680" height="320" fill="none" stroke="#c9a45c" strokeWidth="4" />
-              <line x1="110" y1="220" x2="790" y2="220" stroke="#c9a45c" strokeWidth="2" />
-              <line x1="260" y1="100" x2="260" y2="420" stroke="#c9a45c" strokeWidth="2" />
-              <line x1="520" y1="100" x2="520" y2="420" stroke="#c9a45c" strokeWidth="2" />
-              <rect x="570" y="260" width="150" height="100" fill="none" stroke="#c9a45c" strokeWidth="2" />
-              <path d="M110 100 L450 35 L790 100" fill="none" stroke="#c9a45c" strokeWidth="3" />
-              <text x="125" y="455" fill="#c9a45c" fontSize="20" letterSpacing="6">BLUEPRINT</text>
-            </svg>
+        <div className="relative mx-auto h-[64vh] w-full max-w-5xl overflow-hidden border border-white/10 bg-[#f7f3ea] shadow-2xl">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,.045)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.045)_1px,transparent_1px)] bg-[size:36px_36px]" />
+          <motion.img style={{ opacity: planOpacity }} src="/build/blueprint-home.png" alt="Architectural blueprint line drawing" className="absolute inset-0 h-full w-full object-cover" />
+          <motion.img style={{ opacity: frameOpacity }} src="/build/frame-home.png" alt="Structural frame drawing" className="absolute inset-0 h-full w-full object-cover mix-blend-multiply" />
+          <motion.img style={{ opacity: shellOpacity }} src="/build/shell-home.webp" alt="Home shell drawing" className="absolute inset-0 h-full w-full object-cover" />
+          <motion.div style={{ opacity: photoOpacity, scale: photoScale, clipPath: revealClip }} className="absolute inset-0">
+            <img src="/build/final-home.webp" alt="Finished Angel Custom Homes residence" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </motion.div>
-          <motion.div style={{ opacity: frame }} className="absolute inset-0 flex items-center justify-center">
-            <div className="relative h-[58%] w-[78%] border-4 border-white">
-              <div className="absolute left-0 top-0 h-full w-[18%] border-r-4 border-white" />
-              <div className="absolute right-0 top-0 h-full w-[18%] border-l-4 border-white" />
-              <div className="absolute left-[18%] top-[18%] h-[64%] w-[64%] border-4 border-white" />
-              <div className="absolute -top-14 left-0 h-14 w-full border-x-4 border-t-4 border-white" />
-            </div>
-          </motion.div>
-          <motion.div style={{ opacity: house, scale: houseScale }} className="absolute inset-0 overflow-hidden shadow-2xl">
-            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2200&q=90" alt="Finished custom residence" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-          </motion.div>
+          <div className="absolute left-6 top-6 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-black/70 backdrop-blur">Scroll build sequence</div>
         </div>
       </div>
     </section>
